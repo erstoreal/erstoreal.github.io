@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Saka Store</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0b0b;
+            color: white;
+        }
+
+        header {
+            background: #050505;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+    display: flex;
+    align-items: center;
+}
+
+.indonesia-flag {
+    width: 38px;
+    height: 25px;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.flag-red {
+    width: 100%;
+    height: 50%;
+    background: #e60000;
+}
+
+.flag-white {
+    width: 100%;
+    height: 50%;
+    background: #ffffff;
+}
+
+        .menu {
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: 45px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #111827, #050505);
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: #171717;
+            border: 1px solid #292929;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .product-image {
+            height: 170px;
+            background: linear-gradient(135deg, #26364d, #111827);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product h3 {
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #ffd000;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .stock {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .buy-button {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 13px;
+            background: #ffd000;
+            color: #111;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .buy-button:hover {
+            background: #ffdf45;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 35px 20px;
+            background: #050505;
+            text-align: center;
+            color: #888;
+        }
+        .payment-section {
+    margin-top: 40px;
+    background: #171717;
+    border: 1px solid #292929;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.payment-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.payment-group {
+    margin-bottom: 20px;
+}
+
+.payment-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.payment-group input,
+.payment-group select {
+    width: 100%;
+    padding: 14px;
+    background: #292929;
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.payment-note {
+    color: #999;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.payment-button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    background: #ffd000;
+    color: #111;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+        .product.selected {
+    border: 3px solid #ffd000;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <div class="indonesia-flag">
+            <div class="flag-red"></div>
+            <div class="flag-white"></div>
+        </div>
+    </div>
+
+    <div class="menu">☰</div>
+</header>
+
+<section class="hero">
+    <h1>Selamat Datang di Saka Store</h1>
+    <p>
+        Tempat membeli berbagai produk digital
+        dengan proses cepat dan mudah.
+    </p>
+</section>
+
+<main class="container">
+
+    <h2 class="section-title">Produk Terlaris</h2>
+
+    <div class="products">
+
+        <div class="product" onclick="pilihProduk(this)">
+
+            <div class="product-image">
+                <img src="advance-server-lvl-3.jpg" alt="Advance Server LVL 3">
+            </div>
+
+            <div class="product-info">
+
+                <h3>Advance Server LVL 3</h3>
+
+                <div class="price">
+                    Rp2.000
+                </div>
+
+                <div class="stock">
+                    Stok tersedia
+                </div>
+
+               
+
+            </div>
+
+        </div>
+
+
+        <div class="product" onclick="pilihProduk(this)">
+
+            <div class="product-image">
+                🎮
+            </div>
+
+            <div class="product-info">
+
+                <h3>Advance Server LVL 3 (2 Server)</h3>
+
+                <div class="price">
+                    Rp12.000
+                </div>
+
+                <div class="stock">
+                    Stok tersedia
+                </div>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+<section id="pembayaran" class="payment-section">
+
+    <h2>Detail Pesanan</h2>
+<div class="selected-product">
+    <div>Produk yang Dipilih</div>
+    <strong id="selected-product-name">Belum ada produk dipilih</strong>
+</div>
+    <div class="payment-group">
+        <label>Nomor WhatsApp</label>
+        <input type="text" id="nomor-wa" placeholder="Masukkan Nomor WhatsApp Anda">
+        <p class="payment-note">*Pastikan nomor Anda aktif dan benar.</p>
+    </div>
+
+    <div class="payment-group">
+        <label>Kode Promo</label>
+        <input type="text" id="kode-promo" placeholder="Masukkan Kode Promo (Jika Ada)">
+    </div>
+
+    <div class="payment-group">
+        <label>Metode Pembayaran</label>
+        <select id="metode-pembayaran">
+            <option value="">Pilih Metode Pembayaran</option>
+            <option value="gopay">GoPay</option>
+            <option value="dana">DANA</option>
+            <option value="ovo">OVO</option>
+            <option value="qris">QRIS</option>
+        </select>
+    </div>
+
+    <button class="payment-button">
+        LANJUTKAN PEMBAYARAN
+    </button>
+
+    <p class="payment-note">
+        Pastikan nomor WhatsApp dan metode pembayaran yang Anda pilih sudah benar.
+    </p>
+
+</section>
+<footer>
+    <p>© 2026 Saka Store</p>
+    <p style="margin-top:10px;">
+        Layanan digital terpercaya
+    </p>
+</footer>
+
+<script>
+    function beliProduk(namaProduk, hargaProduk) {
+    window.location.href =
+        "checkout.html?produk=" +
+        encodeURIComponent(namaProduk) +
+        "&harga=" +
+        encodeURIComponent(hargaProduk);
+    }
+        function pilihProduk(produk) {
+    document.querySelectorAll(".product").forEach(p => {
+        p.classList.remove("selected");
+    });
+
+    produk.classList.add("selected");
+document.getElementById("selected-product-name").textContent =
+    produk.querySelector("h3").textContent;
+    document.getElementById("pembayaran").scrollIntoView({
+        behavior: "smooth"
+    });
+        }
+    document.querySelector(".payment-button").addEventListener("click", function() {
+
+    const nomorWA = document.getElementById("nomor-wa").value;
+    const kodePromo = document.getElementById("kode-promo").value;
+    const metode = document.getElementById("metode-pembayaran").value;
+    const produk = document.getElementById("selected-product-name").textContent;
+
+    if (nomorWA === "") {
+        alert("Silakan masukkan nomor WhatsApp Anda.");
+        return;
+    }
+
+    if (metode === "") {
+        alert("Silakan pilih metode pembayaran.");
+        return;
+    }
+
+    alert(
+        "Pesanan berhasil diproses!\n\n" +
+        "Produk: " + produk + "\n" +
+        "WhatsApp: " + nomorWA + "\n" +
+        "Metode: " + metode
+    );
+
+});
+</script>
+
+</body>
+  </html>
