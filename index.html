@@ -147,8 +147,7 @@
             border: none;
             padding: 0;
         }
-
-                /* Tombol Pill Terpisah - Bersih tanpa kilatan putih saat disentuh */
+                /* Tombol Pill Terpisah - Anti kilatan dan anti border bawaan browser */
         .sub-tab-btn {
             flex: 1;
             padding: 12px 0;
@@ -161,19 +160,26 @@
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: none; 
-            outline: none; /* Hilangkan garis fokus bawaan browser */
-            -webkit-tap-highlight-color: transparent; /* Hilangkan kedlapan kilat putih di HP */
+            box-shadow: none !important; 
+            outline: none !important; 
+            -webkit-tap-highlight-color: transparent !important;
+        }
+
+        /* Paksa agar saat ditekan/fokus tidak memunculkan border atau efek aneh */
+        .sub-tab-btn:focus,
+        .sub-tab-btn:active {
+            outline: none !important;
+            box-shadow: none !important;
         }
 
         /* Status Tab saat Aktif */
         .sub-tab-btn.active {
-            background-color: #ef4444; 
-            border: none; 
-            color: #ffffff;
-            box-shadow: none; 
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
+            background-color: #ef4444 !important; 
+            border: none !important; 
+            color: #ffffff !important;
+            box-shadow: none !important; 
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent !important;
         }
 
         /* Area Konten Tab */
