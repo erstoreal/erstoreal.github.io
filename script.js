@@ -6,23 +6,20 @@ let currentIndex = 0;
 let slideInterval;
 
 function updateSlider(index) {
-    if (index >= slides.length) {
-        currentIndex = 0;
-    } else if (index < 0) {
-        currentIndex = slides.length - 1;
-    } else {
-        currentIndex = index;
-    }
+    // Memastikan index berputar melingkar ke depan secara terus-menerus (0 -> 1 -> 2 -> 0 -> dst)
+    currentIndex = (index + slides.length) % slides.length;
 
+    // Menggeser track ke kiri (yang menyebabkan visual banner bergeser ke kanan/maju terus)
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
+    // Memperbarui titik indikator (dots) yang aktif
     dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
     });
 }
 
 function nextSlide() {
-    updateSlider(currentIndex + 1);
+    updateSlider(currentIndex + 1); // Selalu bertambah maju ke depan
 }
 
 function startAutoSlide() {
@@ -33,10 +30,10 @@ function stopAutoSlide() {
     clearInterval(slideInterval);
 }
 
-// Jalankan otomatis saat halaman dibuka
+// Mulai slider otomatis saat halaman dimuat
 startAutoSlide();
 
-// Fungsi ketika titik (dot) diklik manual
+// Fungsi jika titik (dot) diklik manual
 function currentSlide(index) {
     updateSlider(index);
     stopAutoSlide();
