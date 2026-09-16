@@ -117,11 +117,12 @@
 
 
 
-        /* Indikator Titik (Dots) di Bawah Banner */
+       /* Indikator Titik (Dots) di Tengah Bawah */
         .slider-dots {
             position: absolute;
-            bottom: 10px;
-            right: 14px;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%); /* Trik CSS agar posisinya pas di tengah-tengah */
             display: flex;
             gap: 6px;
             z-index: 5;
