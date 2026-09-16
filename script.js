@@ -1,7 +1,7 @@
 const track = document.getElementById('sliderTrack');
 const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
-const totalSlides = 3; // Jumlah asli slide (tidak termasuk klon)
+const totalSlides = 3; // Jumlah asli slide
 
 function updateDots(index) {
     let activeIndex = index % totalSlides;
@@ -13,30 +13,27 @@ function updateDots(index) {
 function nextSlide() {
     currentIndex++;
     
-    // Geser mulus pakai CSS transition
-    track.style.transition = "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
+    // Gunakan transisi halus
+    track.style.transition = "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)";
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
     updateDots(currentIndex);
 
-    // Kalau sudah menyentuh slide klon di paling ujung (index 3)
+    // Begitu animasi geser ke slide klon selesai, langsung reset instan tanpa kedip
     if (currentIndex === totalSlides) {
-        setTimeout(() => {
-            // Matikan transisi seketika, lalu kembalikan ke index 0 secara instan tanpa animasi
+        track.addEventListener('transitionend', function handler() {
+            // Hapus event listener-nya supaya tidak menumpuk
+            track.removeEventListener('transitionend', handler);
+            
+            // Matikan transisi seketika dan balikin ke index 0 (slide 1 asli)
             track.style.transition = "none";
             currentIndex = 0;
             track.style.transform = `translateX(0%)`;
             updateDots(0);
-        }, 600); // Harus pas 600ms sama durasi CSS transition di atas
+        }, { once: true });
     }
 }
 
-// Jalankan pergeseran otomatis tiap 3.5 detik
-let slideInterval = setInterval(nextSlide, 3500);
-
-// Reset interval kalau disentuh atau diklik biar tidak nabrak
-function resetInterval() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 3500);
-}
+// Jalankan otomatis tiap 3.5 detik
+setInterval(nextSlide, 3500);
 
