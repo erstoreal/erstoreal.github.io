@@ -2,7 +2,7 @@ const track = document.getElementById('sliderTrack');
 const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
 const totalSlides = 3; // Jumlah asli slide (tanpa klon)
-let slideInterval;
+let isAnimating = false;
 
 function updateDots(index) {
     let activeIndex = index % totalSlides;
@@ -11,30 +11,34 @@ function updateDots(index) {
     });
 }
 
-function moveToNextSlide() {
+function nextSlide() {
+    if (isAnimating) return; // Cegah tombol/timer numpuk pas lagi transisi
+    isAnimating = true;
+
     currentIndex++;
     
-    // Pastikan transisi CSS aktif dengan mulus
-    track.style.transition = "transform 0.6s ease-in-out";
+    track.style.transition = "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
     updateDots(currentIndex);
 
-    // Jika sudah sampai di slide klon (index 3), tunggu sampai animasi gesernya 100% selesai, baru reset ke 0 tanpa kedip
+    // Cek kalau udah nyampe di slide klon ujung
     if (currentIndex === totalSlides) {
+        // Tunggu pas banget animasi gesernya selesai
         setTimeout(() => {
-            track.style.transition = "none"; // Matikan animasi seketika
+            track.style.transition = "none"; // Matikan animasi biar ga kelihatan lompat
             currentIndex = 0;
             track.style.transform = `translateX(0%)`;
             updateDots(0);
-        }, 600); // Harus pas 600ms (sama dengan durasi 0.6s di atas)
+            isAnimating = false;
+        }, 600); // Harus sinkron dengan 0.6s di atas
+    } else {
+        setTimeout(() => {
+            isAnimating = false;
+        }, 600);
     }
 }
 
-// Atur jeda waktu diam di tiap slide selama 4 detik, biar gambar sempat tampil penuh dan tidak ngebut
-function startSlider() {
-    slideInterval = setInterval(moveToNextSlide, 4000);
-}
-
-startSlider();
+// Eksekusi otomatis tiap 4 detik (aman, nunggu selesai dulu baru jalan lagi)
+setInterval(nextSlide, 4000);
 
