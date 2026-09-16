@@ -148,7 +148,7 @@
             padding: 0;
         }
 
-        /* Tombol Pill Terpisah - Non-aktif diberi border tipis, tanpa bayangan */
+                /* Tombol Pill Terpisah - Bersih tanpa kilatan putih saat disentuh */
         .sub-tab-btn {
             flex: 1;
             padding: 12px 0;
@@ -162,14 +162,18 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: none; 
+            outline: none; /* Hilangkan garis fokus bawaan browser */
+            -webkit-tap-highlight-color: transparent; /* Hilangkan kedlapan kilat putih di HP */
         }
 
-        /* Status Tab saat Aktif - Polos merah KOF tanpa border dan tanpa bayangan */
+        /* Status Tab saat Aktif */
         .sub-tab-btn.active {
             background-color: #ef4444; 
             border: none; 
             color: #ffffff;
             box-shadow: none; 
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* Area Konten Tab */
