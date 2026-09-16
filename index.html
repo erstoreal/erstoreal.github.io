@@ -88,16 +88,33 @@
             background-position: center;
         }
 
-                /* Banner Hero MLBB Resmi (Pasti Mirip) */
+                 /* Banner KOF x MLBB Aesthetic (Serasi dengan Tema Api) */
         .slide-1 {
-            background-image: url('https://akmweb.youngjoygame.com/web/svn/wallpaper/mlbb/hero/Gusion_NightOwl.jpg');
-            /* Gusion Night Owl Skin - Warna biru gelap pas untuk toko */
+            background-image: url('slide-kof-1.jpg'); /* Ganti dengan nama file upload min */
         }
 
         .slide-2 {
-            background-image: url('https://akmweb.youngjoygame.com/web/svn/wallpaper/mlbb/hero/Ling_StreetPunk.jpg');
-            /* Ling Street Punk Skin - Warna kuning/emas pas untuk toko */
+            background-image: url('slide-kof-2.jpg');
         }
+
+        .slide-3 {
+            background-image: url('slide-kof-3.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Menyesuaikan warna titik indikator agar serasi dengan api KOF */
+        .dot.active {
+            background: #ff4500; /* Warna oranye kemerahan menyala (senada api KOF) */
+            width: 20px;
+            border-radius: 6px;
+        }
+
+        /* Menyesuaikan kecepatan transisi slider agar mulus */
+        .slider-track {
+            transition: transform 0.6s ease-in-out; /* Lebih halus dan dinamis */
+        }
+
 
 
         /* Indikator Titik (Dots) di Bawah Banner */
@@ -150,22 +167,29 @@
         </div>
     </header>
 
-        <!-- Bagian Banner Hero MLBB Polos -->
-    <main class="container">
-        <section class="banner-section">
-            <div class="slider-container" id="slider">
-                <div class="slider-track">
-                    <div class="slide slide-1"></div>
-                    <div class="slide slide-2"></div>
+                <!-- Bagian Banner KOF x MLBB (Diupdate untuk 3 Slide) -->
+        <main class="container">
+            <section class="banner-section">
+                <div class="slider-container" id="slider">
+                    <div class="slider-track">
+                        <!-- Slide 1: Terry Bogard -->
+                        <div class="slide slide-1"></div>
+                        <!-- Slide 2: Mai Shiranui -->
+                        <div class="slide slide-2"></div>
+                        <!-- Slide 3: Kyo Kusanagi -->
+                        <div class="slide slide-3"></div>
+                    </div>
+
+                    <!-- Indikator Titik (Dots) - Otomatis akan menyesuaikan jika CSS-nya benar -->
+                    <div class="slider-dots">
+                        <span class="dot active" onclick="currentSlide(0)"></span>
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span> <!-- DOT BARU -->
+                    </div>
                 </div>
-                <!-- Indikator Titik -->
-                <div class="slider-dots">
-                    <span class="dot active" onclick="currentSlide(0)"></span>
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+
 
     <script src="script.js"></script>
 </body>
