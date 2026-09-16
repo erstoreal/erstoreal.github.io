@@ -6,55 +6,39 @@ let currentIndex = 0;
 let slideInterval;
 
 function updateSlider(index) {
-    track.style.transform = `translateX(-${index * 100}%)`;
+    if (index >= slides.length) {
+        currentIndex = 0;
+    } else if (index < 0) {
+        currentIndex = slides.length - 1;
+    } else {
+        currentIndex = index;
+    }
+
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
     dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
+        dot.classList.toggle('active', i === currentIndex);
     });
 }
 
 function nextSlide() {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateSlider(currentIndex);
+    updateSlider(currentIndex + 1);
 }
 
 function startAutoSlide() {
-    slideInterval = setInterval(nextSlide, 4000);
+    slideInterval = setInterval(nextSlide, 3500); // Geser otomatis tiap 3.5 detik
 }
 
 function stopAutoSlide() {
     clearInterval(slideInterval);
 }
 
+// Jalankan otomatis saat halaman dibuka
 startAutoSlide();
 
-let touchStartX = 0;
-let touchEndX = 0;
-
-track.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    stopAutoSlide();
-}, {passive: true});
-
-track.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].clientX;
-    handleSwipe();
-    startAutoSlide();
-}, {passive: true});
-
-function handleSwipe() {
-    let threshold = 50;
-    if (touchStartX - touchEndX > threshold) {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlider(currentIndex);
-    } else if (touchEndX - touchStartX > threshold) {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateSlider(currentIndex);
-    }
-}
-
+// Fungsi ketika titik (dot) diklik manual
 function currentSlide(index) {
-    currentIndex = index;
-    updateSlider(currentIndex);
+    updateSlider(index);
     stopAutoSlide();
     startAutoSlide();
 }
