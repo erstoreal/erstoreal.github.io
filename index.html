@@ -137,52 +137,44 @@
             border-radius: 4px;
         }
          
-                /* Container tombol terpisah */
+        /* 1. Container Kapsul Lonjong di Luar */
         .sub-tabs-container {
             display: flex;
-            gap: 12px;
-            margin: 16px 0;
-            background: transparent;
-            box-shadow: none;
-            border: none;
-            padding: 0;
-        }
-                /* Tombol Pill Terpisah - Anti kilatan dan anti border bawaan browser */
-        .sub-tab-btn {
-            flex: 1;
-            padding: 12px 0;
-            text-align: center;
-            background-color: #161b22; 
+            background-color: #0d1117; 
             border: 1px solid #30363d; 
-            color: #8b949e; 
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: none !important; 
-            outline: none !important; 
-            -webkit-tap-highlight-color: transparent !important;
+            padding: 4px;
+            border-radius: 9999px; 
+            margin: 16px auto;
+            max-width: 100%;
+            box-shadow: none;
         }
 
-        /* Paksa agar saat ditekan/fokus tidak memunculkan border atau efek aneh */
-        .sub-tab-btn:focus,
-        .sub-tab-btn:active {
+        /* 2. Tombol di Dalam Kapsul */
+        .sub-tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            text-align: center;
+            background-color: transparent;
+            border: none;
+            color: #8b949e; 
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 9999px; 
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
             outline: none !important;
+            -webkit-tap-highlight-color: transparent !important;
             box-shadow: none !important;
         }
 
-        /* Status Tab saat Aktif */
+        /* 3. Tombol saat Aktif (Merah KOF "mengambang") */
         .sub-tab-btn.active {
-            background-color: #ef4444 !important; 
-            border: none !important; 
-            color: #ffffff !important;
-            box-shadow: none !important; 
-            outline: none !important;
-            -webkit-tap-highlight-color: transparent !important;
+            background-color: #ef4444; 
+            color: #ffffff; 
+            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4); 
         }
 
-        /* Area Konten Tab */
+        /* 4. Area Konten Tab */
         .tab-pane {
             display: none;
         }
@@ -236,11 +228,12 @@
                         <span class="dot" onclick="currentSlide(2)"></span> <!-- DOT BARU -->
                 </div>
             </section>
-                <!-- Dual Sub-Tab Navigation -->
-    <div class="sub-tabs-container">
-        <button class="sub-tab-btn active" onclick="switchTab('products')">Produk</button>
-        <button class="sub-tab-btn" onclick="switchTab('guide')">Panduan Order</button>
-    </div>
+
+     <!-- Dual Sub-Tab Navigation -->
+        <div class="sub-tabs-container">
+            <button class="sub-tab-btn active" onclick="switchTab('products')">Pilihan Produk</button>
+            <button class="sub-tab-btn" onclick="switchTab('guide')">Cara Order</button>
+        </div>
 
     <!-- Area Konten Tab -->
     <div class="tab-content-area">
