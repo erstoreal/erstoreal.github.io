@@ -1,30 +1,42 @@
 const track = document.getElementById('sliderTrack');
-const slides = track.children;
 const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
-const totalRealSlides = 3; // Jumlah asli slide (tanpa klon)
+const totalSlides = 3; // Jumlah asli slide (tidak termasuk klon)
+
+function updateDots(index) {
+    let activeIndex = index % totalSlides;
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeIndex);
+    });
+}
 
 function nextSlide() {
     currentIndex++;
-    track.style.transition = "transform 0.6s ease-in-out";
+    
+    // Geser mulus pakai CSS transition
+    track.style.transition = "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    updateDots(currentIndex);
 
-    // Update dot indikator
-    let activeDot = currentIndex % totalRealSlides;
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === activeDot);
-    });
-
-    // Kalau sudah sampai di slide klon paling belakang (index 3)
-    if (currentIndex === totalRealSlides) {
+    // Kalau sudah menyentuh slide klon di paling ujung (index 3)
+    if (currentIndex === totalSlides) {
         setTimeout(() => {
-            track.style.transition = "none"; // Matikan animasi biar gak kelihatan lompat
+            // Matikan transisi seketika, lalu kembalikan ke index 0 secara instan tanpa animasi
+            track.style.transition = "none";
             currentIndex = 0;
             track.style.transform = `translateX(0%)`;
-        }, 600); // Pas banget pas durasi animasi selesai
+            updateDots(0);
+        }, 600); // Harus pas 600ms sama durasi CSS transition di atas
     }
 }
 
-// Jalankan otomatis tiap 3.5 detik
-setInterval(nextSlide, 3500);
+// Jalankan pergeseran otomatis tiap 3.5 detik
+let slideInterval = setInterval(nextSlide, 3500);
+
+// Reset interval kalau disentuh atau diklik biar tidak nabrak
+function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 3500);
+}
 
