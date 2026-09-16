@@ -4,7 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERSTORE</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Pengaturan Dasar & Tema Abu-abu Gelap */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #181b20;
+            color: #f3f4f6;
+            min-height: 200vh; /* Sengaja dibuat panjang agar efek sticky terlihat saat digulir */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header Sticky */
+        .navbar {
+            background: #21262d;
+            border-bottom: 1px solid #30363d;
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tombol Ikon (Garis Tiga & Lonceng) */
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: #f3f4f6;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .icon-btn:active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
 <body>
 
