@@ -13,3 +13,69 @@ body {
     min-height: 100vh;
 }
 
+/* Gaya Kotak Pencarian dan Header */
+.navbar {
+    background: #21262d;
+    border-bottom: 1px solid #30363d;
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #38bdf8;
+}
+
+.nav-badge {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.search-box-wrapper {
+    display: flex;
+    align-items: center;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 24px;
+    padding: 8px 16px;
+    gap: 10px;
+}
+
+.search-box-wrapper input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f3f4f6;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.search-box-wrapper input::placeholder {
+    color: #8b949e;
+}
+
+.search-icon {
+    color: #8b949e;
+    font-size: 1.1rem;
+}
+
