@@ -1,42 +1,30 @@
-const track = document.querySelector('.slider-track');
-const slides = Array.from(track.children);
+const track = document.getElementById('sliderTrack');
+const slides = track.children;
 const dots = document.querySelectorAll('.dot');
-
 let currentIndex = 0;
-let slideInterval;
-
-function updateSlider(index) {
-    // Memastikan index berputar melingkar ke depan secara terus-menerus (0 -> 1 -> 2 -> 0 -> dst)
-    currentIndex = (index + slides.length) % slides.length;
-
-    // Menggeser track ke kiri (yang menyebabkan visual banner bergeser ke kanan/maju terus)
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    // Memperbarui titik indikator (dots) yang aktif
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-    });
-}
+const totalRealSlides = 3; // Jumlah asli slide (tanpa klon)
 
 function nextSlide() {
-    updateSlider(currentIndex + 1); // Selalu bertambah maju ke depan
+    currentIndex++;
+    track.style.transition = "transform 0.6s ease-in-out";
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    // Update dot indikator
+    let activeDot = currentIndex % totalRealSlides;
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeDot);
+    });
+
+    // Kalau sudah sampai di slide klon paling belakang (index 3)
+    if (currentIndex === totalRealSlides) {
+        setTimeout(() => {
+            track.style.transition = "none"; // Matikan animasi biar gak kelihatan lompat
+            currentIndex = 0;
+            track.style.transform = `translateX(0%)`;
+        }, 600); // Pas banget pas durasi animasi selesai
+    }
 }
 
-function startAutoSlide() {
-    slideInterval = setInterval(nextSlide, 3500); // Geser otomatis tiap 3.5 detik
-}
-
-function stopAutoSlide() {
-    clearInterval(slideInterval);
-}
-
-// Mulai slider otomatis saat halaman dimuat
-startAutoSlide();
-
-// Fungsi jika titik (dot) diklik manual
-function currentSlide(index) {
-    updateSlider(index);
-    stopAutoSlide();
-    startAutoSlide();
-}
+// Jalankan otomatis tiap 3.5 detik
+setInterval(nextSlide, 3500);
 
