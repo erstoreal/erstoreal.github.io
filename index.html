@@ -136,6 +136,48 @@
             width: 18px;
             border-radius: 4px;
         }
+         
+        /* Styling Container Sub-Tab */
+        .sub-tabs-container {
+            display: flex;
+            background-color: #0f172a;
+            padding: 4px;
+            border-radius: 10px;
+            margin: 16px 0;
+            gap: 4px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tombol Pill-Tab */
+        .sub-tab-btn {
+            flex: 1;
+            padding: 10px 0;
+            text-align: center;
+            background-color: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Status Tab saat Aktif */
+        .sub-tab-btn.active {
+            background-color: #161b22;
+            color: #f8fafc;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Area Konten Tab */
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -181,6 +223,22 @@
                         <span class="dot" onclick="currentSlide(2)"></span> <!-- DOT BARU -->
                 </div>
             </section>
+                <!-- Dual Sub-Tab Navigation -->
+    <div class="sub-tabs-container">
+        <button class="sub-tab-btn active" onclick="switchTab('products')">Produk</button>
+        <button class="sub-tab-btn" onclick="switchTab('guide')">Panduan Order</button>
+    </div>
+
+    <!-- Area Konten Tab -->
+    <div class="tab-content-area">
+        <div id="products-content" class="tab-pane active">
+            <!-- Konten Produk nanti di sini -->
+        </div>
+        <div id="guide-content" class="tab-pane">
+            <!-- Konten Panduan Order nanti di sini -->
+        </div>
+    </div>
+
         </main>
 
 
