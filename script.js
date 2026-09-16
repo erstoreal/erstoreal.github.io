@@ -39,3 +39,19 @@ function resetInterval() {
     clearInterval(slideInterval);
     slideInterval = setInterval(nextSlide, 3500);
 }
+
+function switchTab(tabName) {
+    const buttons = document.querySelectorAll('.sub-tab-btn');
+    const panes = document.querySelectorAll('.tab-pane');
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+    panes.forEach(pane => pane.classList.remove('active'));
+
+    if (tabName === 'products') {
+        buttons[0].classList.add('active');
+        document.getElementById('products-content').classList.add('active');
+    } else if (tabName === 'guide') {
+        buttons[1].classList.add('active');
+        document.getElementById('guide-content').classList.add('active');
+    }
+}
