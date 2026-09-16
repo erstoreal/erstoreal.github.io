@@ -60,6 +60,67 @@
         .icon-btn:active {
             background-color: rgba(255, 255, 255, 0.1);
         }
+                /* Styling Banner Slider Polos */
+        .banner-section {
+            padding: 16px 0;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            aspect-ratio: 16 / 9; /* Membuat bentuk banner melebar ala game */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Tempat nanti diisi link gambar hero MLBB */
+        .slide-1 {
+            background-color: #0f172a; 
+        }
+
+        .slide-2 {
+            background-color: #1e293b; 
+        }
+
+        /* Indikator Titik (Dots) di Bawah Banner */
+        .slider-dots {
+            position: absolute;
+            bottom: 10px;
+            right: 14px;
+            display: flex;
+            gap: 6px;
+            z-index: 5;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background 0.3s, width 0.3s;
+        }
+
+        .dot.active {
+            background: #fbbf24; /* Warna emas ala diamond MLBB */
+            width: 18px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -85,6 +146,23 @@
             </button>
         </div>
     </header>
+
+        <!-- Bagian Banner Hero MLBB Polos -->
+    <main class="container">
+        <section class="banner-section">
+            <div class="slider-container" id="slider">
+                <div class="slider-track">
+                    <div class="slide slide-1"></div>
+                    <div class="slide slide-2"></div>
+                </div>
+                <!-- Indikator Titik -->
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
