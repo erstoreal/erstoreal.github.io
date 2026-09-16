@@ -65,7 +65,7 @@
             padding: 16px 0;
         }
 
-                .slider-container {
+        .slider-container {
             position: relative;
             width: 100%;
             border-radius: 12px;
@@ -77,19 +77,20 @@
 
         .slider-track {
             display: flex;
-            width: 400%;
-            transition: transform 0.55s ease-in-out;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
         }
 
         .slide {
-            width: 25%;
-            aspect-ratio: 16 / 9;
+            min-width: 100%;
+            aspect-ratio: 16 / 9; /* Membuat bentuk banner melebar ala game */
             background-size: cover;
             background-position: center;
         }
 
+                 /* Banner KOF x MLBB Aesthetic (Serasi dengan Tema Api) */
         .slide-1 {
-            background-image: url('slide-kof-1.jpg');
+            background-image: url('slide-kof-1.jpg'); /* Ganti dengan nama file upload min */
         }
 
         .slide-2 {
@@ -98,13 +99,30 @@
 
         .slide-3 {
             background-image: url('slide-kof-3.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
+        /* Menyesuaikan warna titik indikator agar serasi dengan api KOF */
+        .dot.active {
+            background: #ff4500; /* Warna oranye kemerahan menyala (senada api KOF) */
+            width: 20px;
+            border-radius: 6px;
+        }
+
+        /* Menyesuaikan kecepatan transisi slider agar mulus */
+        .slider-track {
+            transition: transform 0.6s ease-in-out; /* Lebih halus dan dinamis */
+        }
+
+
+
+       /* Indikator Titik (Dots) di Tengah Bawah */
         .slider-dots {
             position: absolute;
             bottom: 12px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%); /* Trik CSS agar posisinya pas di tengah-tengah */
             display: flex;
             gap: 6px;
             z-index: 5;
@@ -120,7 +138,7 @@
         }
 
         .dot.active {
-            background: #ffbf24;
+            background: #fbbf24; /* Warna emas ala diamond MLBB */
             width: 18px;
             border-radius: 4px;
         }
@@ -175,4 +193,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
