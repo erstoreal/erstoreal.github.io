@@ -114,30 +114,25 @@
             transition: transform 0.6s ease-in-out; /* Lebih halus dan dinamis */
         }
 
-
-
-       /* Indikator Titik (Dots) di Tengah Bawah */
+        /* Indikator Titik (Dots) di Bawah Banner */
         .slider-dots {
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%); /* Trik CSS agar posisinya pas di tengah-tengah */
             display: flex;
+            justify-content: center;
             gap: 6px;
-            z-index: 5;
+            margin-top: 12px; /* Jarak pas di bawah banner */
         }
 
         .dot {
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
+            background-color: #475569; /* Warna abu-abu kontras saat off */
             cursor: pointer;
-            transition: background 0.3s, width 0.3s;
+            transition: all 0.3s ease;
         }
 
         .dot.active {
-            background: #fbbf24; /* Warna emas ala diamond MLBB */
+            background-color: #ef4444; /* Warna merah menyala ala api KOF */
             width: 18px;
             border-radius: 4px;
         }
