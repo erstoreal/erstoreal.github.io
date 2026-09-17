@@ -55,3 +55,9 @@ function switchTab(tabName) {
         document.getElementById('guide-content').classList.add('active');
     }
 }
+function switchBottomNav(element, menuName) {
+    const items = document.querySelectorAll('.bottom-nav-item');
+    items.forEach(item => item.classList.remove('active'));
+    element.classList.add('active');
+    console.log("Menu dipilih: " + menuName);
+}
