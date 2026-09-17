@@ -260,9 +260,9 @@
     transition: all 0.2s ease-in-out;
 }
 
-/* Efek Saat Card Dipilih (Border Merah Cabai & Efek Tekan) */
+/* Efek Saat Card Dipilih (Border Merah Cabai Lebih Tipis & Elegan) */
 .product-card.selected {
-    border: 2px solid #E94014 !important;
+    border: 1.5px solid #E94014 !important;
     transform: scale(0.98);
     background-color: rgba(35, 40, 48, 0.95);
 }
@@ -325,16 +325,13 @@
     <div class="tab-content-area">
         <div id="products-content" class="tab-pane active">
 
-    <!-- Bagian Judul Pilihan Akun -->
-    <h3 style="color: #f3f4f6; font-size: 18px; margin: 20px 0 12px 0; font-weight: 600;">Pilihan Akun</h3>
-
-    <!-- Container Card Produk -->
-    <div class="product-grid" style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;">
+    <!-- Container Card Produk (Tanpa Judul, Tampilan Lebih Minimalis & Bersih) -->
+    <div class="product-grid" style="display: flex; flex-direction: column; gap: 16px; margin-top: 16px; margin-bottom: 24px;">
 
         <!-- CARD PRODUK 1 -->
         <div class="product-card" onclick="selectCard(this)">
-            <div style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 12px;">
-                <img src="URL_FOTO_AKUN_1.jpg" alt="Akun MLBB" style="width: 100%; height: auto; display: block;">
+            <div style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 12px; background-color: #161b22;">
+                <img src="https://picsum.photos/600/350?random=1" alt="Akun MLBB" style="width: 100%; height: auto; display: block;">
             </div>
             <h4 style="color: #f3f4f6; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Advance Server Lev 3 | 1s</h4>
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
@@ -342,15 +339,15 @@
                 <span style="color: #E94014; font-size: 18px; font-weight: bold;">Rp 2.000</span>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
-                <span style="color: #8b949e; font-size: 13px;">Stok tersedia : <strong style="color: #f3f4f6;">2</strong></span>
+                <span style="color: #8b949e; font-size: 13px;">Stok tersedia : <span class="stok-jumlah" style="color: #8b949e; font-size: 13px; font-weight: normal;">2</span></span>
                 <button style="background-color: #E94014; color: #ffffff; border: none; padding: 7px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">View Detail</button>
             </div>
         </div>
 
         <!-- CARD PRODUK 2 -->
         <div class="product-card" onclick="selectCard(this)">
-            <div style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 12px;">
-                <img src="URL_FOTO_AKUN_2.jpg" alt="Akun MLBB" style="width: 100%; height: auto; display: block;">
+            <div style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 12px; background-color: #161b22;">
+                <img src="https://picsum.photos/600/350?random=2" alt="Akun MLBB" style="width: 100%; height: auto; display: block;">
             </div>
             <h4 style="color: #f3f4f6; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Advance Server Lev 3 | 5s</h4>
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
@@ -358,13 +355,14 @@
                 <span style="color: #E94014; font-size: 18px; font-weight: bold;">Rp 7.000</span>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
-                <span style="color: #8b949e; font-size: 13px;">Stok tersedia : <strong style="color: #f3f4f6;">2</strong></span>
+                <span style="color: #8b949e; font-size: 13px;">Stok tersedia : <span class="stok-jumlah" style="color: #8b949e; font-size: 13px; font-weight: normal;">2</span></span>
                 <button style="background-color: #E94014; color: #ffffff; border: none; padding: 7px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">View Detail</button>
             </div>
         </div>
 
     </div>
 </div>
+
 
         <div id="guide-content" class="tab-pane">
             <!-- Konten Panduan Order nanti di sini -->
