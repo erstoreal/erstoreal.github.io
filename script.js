@@ -61,3 +61,10 @@ function switchBottomNav(element, menuName) {
     element.classList.add('active');
     console.log("Menu dipilih: " + menuName);
 }
+   // Fungsi untuk memberikan efek pilih pada card produk
+    function selectCard(element) {
+        const cards = document.querySelectorAll('.product-card');
+        cards.forEach(card => card.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
