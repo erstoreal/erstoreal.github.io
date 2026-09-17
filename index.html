@@ -333,10 +333,17 @@
             <span>Notifikasi</span>
         </button>
 
-                                <!-- 3. Legalitas (Dokumen Profesional) -->
+                <!-- 3. Legalitas (Dokumen Custom Presisi) -->
         <button class="bottom-nav-item" onclick="switchBottomNav(this, 'legalitas')">
             <svg viewBox="0 0 24 24">
-                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path>
+                <!-- Kontur Dokumen -->
+                <path d="M13.5 2H6C4.9 2 4 2.9 4 4v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8.5L13.5 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="13 2 13 9 20 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Garis-garis di Dokumen -->
+                <line x1="8" y1="11" x2="13" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="8" y1="15" x2="16" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <!-- Perisai Kecil dengan Centang -->
+                <path d="M14 17l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <span>Legalitas</span>
         </button>
