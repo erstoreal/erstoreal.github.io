@@ -192,7 +192,7 @@
         .tab-pane.active {
             display: block;
         }
-                /* Sticky Bottom Navigation */
+                        /* Sticky Bottom Navigation (Tanpa bayangan yang mengganggu) */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -205,9 +205,10 @@
             align-items: center;
             padding: 8px 0 env(safe-area-inset-bottom, 8px);
             z-index: 1000;
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: none !important; /* Menghilangkan efek bayangan */
         }
 
+        /* Warna ikon non-aktif: Abu-abu gelap transparan yang pas */
         .bottom-nav-item {
             display: flex;
             flex-direction: column;
@@ -215,7 +216,7 @@
             justify-content: center;
             background: transparent;
             border: none;
-            color: #8b949e; /* Warna teks/ikon saat tidak aktif (abu-abu redup) */
+            color: rgba(255, 255, 255, 0.4) !important; /* Abu-abu gelap transparan */
             font-size: 11px;
             font-family: inherit;
             cursor: pointer;
@@ -234,7 +235,7 @@
             transition: fill 0.2s ease;
         }
 
-        /* Saat menu aktif (Berubah jadi Merah Solid sesuai sub-tab) */
+        /* Saat menu aktif (Berubah jadi Merah Solid) */
         .bottom-nav-item.active {
             color: #dc2626 !important; /* Warna merah aktif */
         }
