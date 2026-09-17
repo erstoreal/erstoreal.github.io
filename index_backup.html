@@ -1,1 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERSTORE</title>
+    <style>
+        /* Pengaturan Dasar & Tema Abu-abu Gelap */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background-color: #181b20;
+            color: #f3f4f6;
+            min-height: 200vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header Sticky Ramping */
+        .navbar {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 6px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tombol Ikon */
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: #f3f4f6;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    /* Tambahan baru untuk mematikan efek biru bawaan HP */
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
+
+.icon-btn:active {
+    background-color: rgba(255, 255, 255, 0.1); /* Efek abu-abu transparan saat ditekan */
+    outline: none !important;
+}
+
+.icon-btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+                /* Styling Banner Slider Polos */
+        .banner-section {
+            padding: 16px 0;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            background: #1e293b;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            aspect-ratio: 20 / 9; /* Membuat bentuk banner melebar ala game */
+            background-size: cover;
+            background-position: center;
+        }
+
+                 /* Banner KOF x MLBB Aesthetic (Serasi dengan Tema Api) */
+        .slide-1 {
+            background-image: url('slide-kof-1.jpg'); /* Ganti dengan nama file upload min */
+        }
+
+        .slide-2 {
+            background-image: url('slide-kof-2.jpg');
+        }
+
+        .slide-3 {
+            background-image: url('slide-kof-3.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Menyesuaikan warna titik indikator agar serasi dengan api KOF */
+        .dot.active {
+            background: #ff4500; /* Warna oranye kemerahan menyala (senada api KOF) */
+            width: 20px;
+            border-radius: 6px;
+        }
+
+        /* Menyesuaikan kecepatan transisi slider agar mulus */
+        .slider-track {
+            transition: transform 0.6s ease-in-out; /* Lebih halus dan dinamis */
+        }
+
+        /* Indikator Titik (Dots) di Luar Bawah Banner */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #475569; /* Warna abu-abu kontras saat off */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: rgba(255, 255, 255, 0.35);
+            width: 18px;
+            border-radius: 4px;
+        }
+         
+        /* 1. Container Kapsul Lonjong di Luar */
+        .sub-tabs-container {
+            display: flex;
+            background-color: #0d1117; 
+            border: 1px solid #30363d; 
+            padding: 4px;
+            border-radius: 9999px; 
+            margin: 0px 20px;
+            max-width: calc(100% - 40px);
+            box-shadow: none;
+        }
+
+        /* 2. Tombol di Dalam Kapsul */
+        .sub-tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            text-align: center;
+            background-color: transparent;
+            border: none;
+            color: #8b949e; 
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 9999px; 
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+            box-shadow: none !important;
+        }
+
+       /* 3. Tombol saat Aktif (Merah Solid Tanpa Bayangan) */
+        .sub-tab-btn.active {
+            background-color: #b91c1c; /* Silakan pakai #e11d48 atau #dc2626 */
+            color: #ffffff; 
+            box-shadow: none; 
+        }
+
+
+        /* 4. Area Konten Tab */
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+                        /* Sticky Bottom Navigation (Tanpa bayangan yang mengganggu) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #161b22;
+            border-top: 1px solid #30363d;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 0 env(safe-area-inset-bottom, 8px);
+            z-index: 1000;
+            box-shadow: none !important; /* Menghilangkan efek bayangan */
+        }
+
+        /* Warna ikon non-aktif: Abu-abu gelap transparan yang pas */
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.4) !important; /* Abu-abu gelap transparan */
+            font-size: 11px;
+            font-family: inherit;
+            cursor: pointer;
+            flex: 1;
+            padding: 4px 0;
+            transition: color 0.2s ease;
+            -webkit-tap-highlight-color: transparent !important;
+            outline: none !important;
+        }
+
+        .bottom-nav-item svg {
+            width: 22px;
+            height: 22px;
+            margin-bottom: 3px;
+            fill: currentColor;
+            transition: fill 0.2s ease;
+        }
+
+        /* Saat menu aktif (Berubah jadi Merah Solid) */
+        .bottom-nav-item.active {
+            color: #dc2626 !important; /* Warna merah aktif */
+        }
+
+        .bottom-nav-item:active {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        /* Berikan jarak bawah pada body/container utama agar tidak tertutup nav bar */
+        body {
+            padding-bottom: 70px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Sticky dengan Ikon Diperbesar tapi Ketebalan Garis Tetap -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <!-- Ikon Garis Tiga (Ukuran besar, ketebalan garis standar 2.0) -->
+            <button class="icon-btn menu-btn" aria-label="Menu" style="margin-left: -4px;">
+                <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="13" y2="18"></line>
+                </svg>
+            </button>
+
+                 <!-- Ikon Bendera Indonesia (SVG - Tanpa Radius / Siku Tajam) -->
+            <button class="icon-btn" aria-label="Region Indonesia" style="display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; padding: 4px;">
+                <svg width="24" height="18" viewBox="0 0 24 18" style="box-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+                    <!-- Bagian Merah di Atas -->
+                    <rect width="24" height="9" fill="#E70011"></rect>
+                    <!-- Bagian Putih di Bawah -->
+                    <rect y="9" width="24" height="9" fill="#FFFFFF"></rect>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+                <!-- Bagian Banner KOF x MLBB (Diupdate untuk 3 Slide) -->
+        <main class="container">
+            <section class="banner-section">
+                <div class="slider-container" id="slider">
+                    <div class="slider-track" id="sliderTrack">
+    <div class="slide slide-1"></div>
+    <div class="slide slide-2"></div>
+    <div class="slide slide-3"></div>
+    <div class="slide slide-1"></div> <!-- Klon slide 1 di paling belakang -->
+                    </div>
+                </div>
+                
+                    <!-- Indikator Titik (Dots) - Otomatis akan menyesuaikan jika CSS-nya benar -->
+                    <div class="slider-dots">
+                        <span class="dot active" onclick="currentSlide(0)"></span>
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span> <!-- DOT BARU -->
+                </div>
+            </section>
+
+     <!-- Dual Sub-Tab Navigation -->
+        <div class="sub-tabs-container">
+            <button class="sub-tab-btn active" onclick="switchTab('products')">Pilihan Produk</button>
+            <button class="sub-tab-btn" onclick="switchTab('guide')">Cara Order</button>
+        </div>
+
+    <!-- Area Konten Tab -->
+    <div class="tab-content-area">
+        <div id="products-content" class="tab-pane active">
+            <!-- Konten Produk nanti di sini -->
+        </div>
+        <div id="guide-content" class="tab-pane">
+            <!-- Konten Panduan Order nanti di sini -->
+        </div>
+    </div>
+        </main>
+
+        <!-- Sticky Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <!-- 1. Beranda (Aktif Default) -->
+        <button class="bottom-nav-item active" onclick="switchBottomNav(this, 'beranda')">
+            <svg viewBox="0 0 25 25">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+            </svg>
+            <span>Beranda</span>
+        </button>
+
+        <!-- 2. Notifikasi -->
+        <button class="bottom-nav-item" onclick="switchBottomNav(this, 'notifikasi')">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.68v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"></path>
+            </svg>
+            <span>Notifikasi</span>
+        </button>
+
+                <!-- 3. Legalitas (Dengan ViewBox Diperbesar) -->
+        <button class="bottom-nav-item" onclick="switchBottomNav(this, 'legalitas')">
+            <svg viewBox="0 0 26 26">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path>
+            </svg>
+            <span>Legalitas</span>
+        </button>
+
+        <!-- 4. Admin / Profil -->
+        <button class="bottom-nav-item" onclick="switchBottomNav(this, 'admin')">
+            <svg viewBox="0 0 25 25">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+            </svg>
+            <span>Admin</span>
+        </button>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
