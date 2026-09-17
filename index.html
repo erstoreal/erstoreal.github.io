@@ -44,22 +44,31 @@
         }
 
         /* Tombol Ikon */
-        .icon-btn {
-            background: transparent;
-            border: none;
-            color: #f3f4f6;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6px;
-            border-radius: 8px;
-            transition: background-color 0.2s;
-        }
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: #f3f4f6;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    /* Tambahan baru untuk mematikan efek biru bawaan HP */
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
 
-        .icon-btn:active {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
+.icon-btn:active {
+    background-color: rgba(255, 255, 255, 0.1); /* Efek abu-abu transparan saat ditekan */
+    outline: none !important;
+}
+
+.icon-btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
                 /* Styling Banner Slider Polos */
         .banner-section {
             padding: 16px 0;
