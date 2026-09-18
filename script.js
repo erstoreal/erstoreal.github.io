@@ -130,11 +130,6 @@ function togglePaymentDropdown() {
             optionsList.style.transform = 'translateY(0)';
             if (arrowIcon) arrowIcon.style.transform = 'rotate(180deg)';
         }, 10);
-        
-        document.getElementById('paymentSection').scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'nearest' 
-        });
     }
 }
 
