@@ -392,37 +392,27 @@
     </div>
   </div>
 
-        <!-- Kartu Ringkasan Produk yang Dipilih -->
-<div style="background-color: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 16px;">
+            <!-- Card Utama Form Checkout -->
+<div id="formCheckoutCard" style="background-color: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 16px; margin-bottom: 30px;">
     
-    <h3 style="color: #f3f4f6; font-size: 14px; font-weight: 600; margin-top: 0; margin-bottom: 12px;">Produk Pilihan</h3>
-
-    <!-- Item Produk -->
-    <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 4px;">
-        
-        <!-- Bagian Kiri: Gambar & Detail Produk -->
-        <div style="display: flex; gap: 12px; align-items: center; flex: 1;">
-            <!-- Gambar Produk dengan ID -->
-            <img id="summaryProductImg" src="https://picsum.photos/id/20/600/350" alt="Produk" style="width: 65px; height: 65px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d;">
-            
-            <!-- Teks Keterangan dengan ID -->
-            <div>
-                <h4 id="summaryProductName" style="color: #f3f4f6; font-size: 13.5px; font-weight: 600; margin: 0 0 4px 0;">Advance Server Lev 3 | 1s</h4>
-                <p id="summaryProductServer" style="color: #8b949e; font-size: 12px; margin: 0 0 2px 0;">Server: 1</p>
-                <p id="summaryProductPrice" style="color: #E94014; font-size: 13.5px; font-weight: bold; margin: 0;">Rp 7.000</p>
+    <!-- Bagian Produk Pilihan (Sembunyikan otomatis secara default) -->
+    <div id="selectedProductCardContainer" style="display: none; margin-bottom: 16px; background-color: #1f242d; border: 1px solid #30363d; border-radius: 12px; padding: 12px;">
+        <h3 style="color: #f3f4f6; font-size: 14px; font-weight: 600; margin-top: 0; margin-bottom: 10px;">Produk Pilihan</h3>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; gap: 12px; align-items: center; flex: 1;">
+                <img id="summaryProductImg" src="" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;" alt="Produk">
+                <div>
+                    <h4 id="summaryProductName" style="color: #f3f4f6; font-size: 13.5px; margin: 0 0 4px 0;"></h4>
+                    <p id="summaryProductServer" style="color: #8b949e; font-size: 12px; margin: 0 0 2px 0;"></p>
+                    <p id="summaryProductPrice" style="color: #E94014; font-size: 13.5px; font-weight: bold; margin: 0;"></p>
+                </div>
             </div>
+            <!-- Tombol Silang untuk Batalkan/Hapus Produk -->
+            <button onclick="removeSelectedProduct()" style="background: transparent; border: none; color: #8b949e; font-size: 18px; cursor: pointer; padding: 4px 8px;">✕</button>
         </div>
-
-        <!-- Tombol Hapus (Silang / X) -->
-        <button onclick="this.closest('div').parentElement.remove()" style="background: transparent; border: none; color: #8b949e; font-size: 16px; cursor: pointer; padding: 8px;">
-            ✕
-        </button>
-
     </div>
 
-</div>
-
-            <!-- 1. No. WhatsApp (Paling Atas) -->
+    <!-- 1. No. WhatsApp -->
     <div style="margin-bottom: 14px;">
         <label style="display: block; color: #f3f4f6; font-size: 14px; font-weight: 600; margin-bottom: 6px;">No. WhatsApp</label>
         <input type="number" id="buyerWhatsapp" placeholder="Masukkan Nomor WhatsApp Anda" style="width: 100%; padding: 10px 14px; background-color: rgba(15, 20, 25, 0.9); border: 1px solid #30363d; border-radius: 8px; color: #f3f4f6; font-size: 14px; outline: none;">
@@ -435,8 +425,8 @@
         <input type="text" id="promoCode" placeholder="Masukkan Kode Promo (Jika Ada)" style="width: 100%; padding: 10px 14px; background-color: rgba(15, 20, 25, 0.9); border: 1px solid #30363d; border-radius: 8px; color: #f3f4f6; font-size: 14px; outline: none;">
     </div>
 
-    <!-- 3. Metode Pembayaran (Dropdown Custom) -->
-    <div style="margin-bottom: 16px; position: relative;">
+    <!-- 3. Metode Pembayaran -->
+    <div id="paymentSection" style="margin-bottom: 16px; position: relative;">
         <label style="display: block; color: #f3f4f6; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Metode Pembayaran</label>
         
         <div id="paymentDropdownTrigger" onclick="togglePaymentDropdown()" style="width: 100%; padding: 10px 14px; background-color: rgba(15, 20, 25, 0.9); border: 1px solid #30363d; border-radius: 8px; color: #f3f4f6; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
@@ -444,6 +434,7 @@
             <span style="font-size: 12px; color: #8b949e;">▼</span>
         </div>
 
+        <!-- Daftar Menu Pilihan Membuka ke Bawah -->
         <div id="paymentOptionsList" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: rgba(22, 27, 34, 0.98); border: 1px solid #30363d; border-radius: 8px; margin-top: 6px; overflow: hidden; z-index: 99; box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
             <div onclick="selectPayment('QRIS (All Payment)', this)" style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(48, 54, 61, 0.4); cursor: pointer;">
                 <span style="color: #f3f4f6; font-size: 13.5px;">QRIS (All Payment)</span>
@@ -474,7 +465,10 @@
         Pastikan kembali nomor WhatsApp dan metode pembayaran yang Anda pilih sudah benar.
     </p>
 
-
+    <!-- Ruang Kosong Tambahan agar Nyaman Saat Scroll -->
+    <div style="height: 100px;"></div>
+</div>
+        
         <div id="guide-content" class="tab-pane">
             <!-- Konten Panduan Order nanti di sini -->
         </div>
