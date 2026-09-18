@@ -392,6 +392,46 @@
     </div>
   </div>
             
+        <!-- Pilihan Metode Pembayaran Custom -->
+<div style="margin-bottom: 16px; position: relative;">
+    <label style="display: block; color: #8b949e; font-size: 13px; margin-bottom: 6px;">Metode Pembayaran</label>
+    
+    <!-- Kotak Trigger (Yang diklik pembeli) -->
+    <div id="paymentDropdownTrigger" style="width: 100%; padding: 10px 14px; background-color: rgba(15, 20, 25, 0.9); border: 1px solid #30363d; border-radius: 8px; color: #f3f4f6; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+        <span id="selectedPaymentText">Pilih Metode Pembayaran</span>
+        <span style="font-size: 12px; color: #8b949e;">▼</span>
+    </div>
+
+    <!-- Daftar Pilihan Kolom di Dalam Card (Muncul Tepat di Bawah Kolom) -->
+    <div id="paymentOptionsList" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: rgba(22, 27, 34, 0.98); border: 1px solid #30363d; border-radius: 8px; margin-top: 6px; overflow: hidden; z-index: 99; box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
+        
+        <!-- Pilihan 1: QRIS -->
+        <div style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(48, 54, 61, 0.4); cursor: pointer;">
+            <span style="color: #f3f4f6; font-size: 13.5px;">QRIS (All Payment)</span>
+            <div class="radio-circle" style="width: 18px; height: 18px; border: 2px solid #8b949e; border-radius: 50%; display: flex; align-items: center; justify-content: center;"></div>
+        </div>
+
+        <!-- Pilihan 2: DANA -->
+        <div style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(48, 54, 61, 0.4); cursor: pointer;">
+            <span style="color: #f3f4f6; font-size: 13.5px;">DANA</span>
+            <div class="radio-circle" style="width: 18px; height: 18px; border: 2px solid #8b949e; border-radius: 50%; display: flex; align-items: center; justify-content: center;"></div>
+        </div>
+
+        <!-- Pilihan 3: OVO -->
+        <div style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(48, 54, 61, 0.4); cursor: pointer;">
+            <span style="color: #f3f4f6; font-size: 13.5px;">OVO</span>
+            <div class="radio-circle" style="width: 18px; height: 18px; border: 2px solid #8b949e; border-radius: 50%; display: flex; align-items: center; justify-content: center;"></div>
+        </div>
+
+        <!-- Pilihan 4: GoPay -->
+        <div style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px card; border-bottom: 1px solid rgba(48, 54, 61, 0.4); cursor: pointer;">
+            <span style="color: #f3f4f6; font-size: 13.5px;">GoPay</span>
+            <div class="radio-circle" style="width: 18px; height: 18px; border: 2px solid #8b949e; border-radius: 50%; display: flex; align-items: center; justify-content: center;"></div>
+        </div>
+
+    </div>
+</div>
+
         <div id="guide-content" class="tab-pane">
             <!-- Konten Panduan Order nanti di sini -->
         </div>
