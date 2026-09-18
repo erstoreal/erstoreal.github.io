@@ -94,14 +94,20 @@ function openProductModal(productId) {
     `;
 
     modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
+    window.savedScrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${window.savedScrollY}px`;
+    document.body.style.width = '100%';
 
 // Fungsi untuk menutup pop-up modal dan membuka kunci layar
 function closeModal() {
     const modal = document.getElementById('productModal');
     modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, window.savedScrollY || 0);
 }
 
 /* ========================================== */
