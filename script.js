@@ -122,7 +122,47 @@ function togglePaymentDropdown() {
     }
 }
 
-// Fungsi ketika salah satu metode pembayaran dipilih
+// 1. Fungsi saat produk diklik di katalog (Memunculkan ringkasan & geser halus ke form)
+function selectProduct(productName, productServer, productPrice, productImage) {
+    const container = document.getElementById('selectedProductCardContainer');
+    document.getElementById('summaryProductName').innerText = productName;
+    document.getElementById('summaryProductServer').innerText = "Server: " + productServer;
+    document.getElementById('summaryProductPrice').innerText = productPrice;
+    document.getElementById('summaryProductImg').src = productImage;
+
+    // Tampilkan kotak produk pilihan
+    container.style.display = 'block';
+
+    // Efek scrolling halus otomatis menuju ke form pembayaran
+    document.getElementById('formCheckoutCard').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+    });
+}
+
+// 2. Tombol Silang untuk menyembunyikan kembali produk pilihan
+function removeSelectedProduct() {
+    document.getElementById('selectedProductCardContainer').style.display = 'none';
+}
+
+// 3. Fungsi Buka/Tutup Dropdown Metode Pembayaran + Geser halus ke area pembayaran
+function togglePaymentDropdown() {
+    const optionsList = document.getElementById('paymentOptionsList');
+    
+    if (optionsList.style.display === 'none' || optionsList.style.display === '') {
+        optionsList.style.display = 'block';
+        
+        // Geser halus otomatis ke area metode pembayaran agar terlihat jelas
+        document.getElementById('paymentSection').scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+        });
+    } else {
+        optionsList.style.display = 'none';
+    }
+}
+
+// 4. Fungsi ketika salah satu metode pembayaran dipilih
 function selectPayment(methodName, element) {
     document.getElementById('selectedPaymentText').innerText = methodName;
     document.getElementById('selectedPaymentText').style.color = '#f3f4f6';
@@ -135,16 +175,25 @@ function selectPayment(methodName, element) {
         circle.innerHTML = '';
     });
 
-    // Ubah ikon lingkaran pada pilihan yang diklik menjadi warna oranye khas TUMBASAKUN (#E94014)
+    // Ubah ikon lingkaran pada pilihan yang diklik menjadi warna oranye khas TUMBASAKUN
     const activeCircle = element.querySelector('.radio-circle');
-    activeCircle.style.borderColor = '#E94014';
-    activeCircle.style.backgroundColor = '#E94014';
-    activeCircle.innerHTML = '<div style="width: 6px; height: 6px; background-color: #ffffff; border-radius: 50%;"></div>';
+    if (activeCircle) {
+        activeCircle.style.borderColor = '#E94014';
+        activeCircle.style.backgroundColor = '#E94014';
+        activeCircle.innerHTML = '<div style="width: 6px; height: 6px; background-color: #ffffff; border-radius: 50%;"></div>';
+    }
 
-    // Tutup dropdown secara otomatis setelah dipilih
+    // Tutup dropdown
     togglePaymentDropdown();
+
+    // Kembalikan fokus geseran halus secara otomatis kembali ke form utama
+    document.getElementById('formCheckoutCard').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+    });
 }
-// Fungsi Otomatis untuk Mengisi Ringkasan Produk dari Katalog
+
+// 5. Fungsi Otomatis untuk Mengisi Ringkasan Produk dari Katalog
 function updateCheckoutSummary(productName, productServer, productPrice, productImage) {
     const nameEl = document.getElementById('summaryProductName');
     const serverEl = document.getElementById('summaryProductServer');
@@ -157,7 +206,7 @@ function updateCheckoutSummary(productName, productServer, productPrice, product
     if (imgEl && productImage) imgEl.src = productImage;
 }
 
-// Fungsi saat Tombol "PESAN SEKARANG" diklik
+// 6. Fungsi saat Tombol "PESAN SEKARANG" diklik
 function processCheckout() {
     const whatsapp = document.getElementById('buyerWhatsapp').value;
     const promo = document.getElementById('promoCode').value;
