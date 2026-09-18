@@ -103,3 +103,94 @@ function closeModal() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
+
+/* ========================================== */
+/* JAVASCRIPT: DROPDOWN & CHECKOUT FORM      */
+/* ========================================== */
+
+// 1. Fungsi untuk Membuka/Menutup Dropdown Metode Pembayaran
+function togglePaymentDropdown() {
+    const optionsList = document.getElementById('paymentOptionsList');
+    
+    // Cek apakah list sedang terbuka atau tertutup
+    if (optionsList.style.display === 'block') {
+        optionsList.style.display = 'none';
+    } else {
+        optionsList.style.display = 'block';
+        
+        // Geser layar secara halus (smooth scroll) ke area pembayaran
+        document.getElementById('paymentSection').scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'nearest' 
+        });
+    }
+}
+
+// 2. Fungsi saat Metode Pembayaran Dipilih (QRIS, DANA, OVO, GoPay)
+function selectPayment(paymentName, elementItem) {
+    // Ubah teks di tombol utama dropdown sesuai pilihan pembeli
+    document.getElementById('selectedPaymentText').innerText = paymentName;
+    document.getElementById('selectedPaymentText').style.color = '#f3f4f6';
+    
+    // Sembunyikan kembali daftar pilihan pembayarannya
+    document.getElementById('paymentOptionsList').style.display = 'none';
+    
+    // Reset indikator radio button
+    const allCircles = document.querySelectorAll('.radio-circle');
+    allCircles.forEach(circle => {
+        circle.innerHTML = '';
+        circle.style.borderColor = '#8b949e';
+    });
+    
+    // Tandai radio button yang dipilih dengan titik oranye aktif
+    const activeCircle = elementItem.querySelector('.radio-circle');
+    activeCircle.style.borderColor = '#E94014';
+    activeCircle.innerHTML = '<div class="radio-dot" style="width: 6px; height: 6px; background-color: #E94014; border-radius: 50%;"></div>';
+}
+
+// 3. Fungsi Saat Produk Dipilih dari Katalog (Menampilkan Kotak Ringkasan)
+function selectCardProduct(productName, productPrice, productImageSrc) {
+    const summaryBox = document.getElementById('selectedProductCardContainer');
+    
+    // Masukkan data produk terpilih ke dalam kotak ringkasan form
+    document.getElementById('summaryProductName').innerText = productName;
+    document.getElementById('summaryProductPrice').innerText = productPrice;
+    document.getElementById('summaryProductImg').src = productImageSrc;
+    
+    // Tampilkan kotak ringkasan dan gulirkan layar ke form checkout
+    summaryBox.style.display = 'block';
+    document.getElementById('formCheckoutCard').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+    });
+}
+
+// 4. Fungsi Menghapus Produk dari Ringkasan
+function removeSelectedProduct() {
+    const summaryBox = document.getElementById('selectedProductCardContainer');
+    summaryBox.style.display = 'none';
+}
+
+// 5. Fungsi Tombol "PESAN SEKARANG" (Sementara untuk Validasi & Siap untuk Tahap Berikutnya)
+function processCheckout() {
+    const whatsappInput = document.getElementById('buyerWhatsapp').value.trim();
+    const selectedPayment = document.getElementById('selectedPaymentText').innerText;
+    
+    // Validasi Nomor WhatsApp
+    if (!whatsappInput) {
+        alert('Mohon masukkan nomor WhatsApp terlebih dahulu!');
+        document.getElementById('buyerWhatsapp').focus();
+        return;
+    }
+    
+    // Validasi Metode Pembayaran
+    if (selectedPayment === 'Pilih Metode Pembayaran') {
+        alert('Silakan pilih metode pembayaran terlebih dahulu!');
+        togglePaymentDropdown();
+        return;
+    }
+    
+    // Jika semua sudah diisi, untuk sementara kita berikan tanda bahwa form siap diproses
+    // (Tahap ini nantinya bisa kita sambungkan ke tampilan baru sesuai rencana min berikutnya)
+    alert('Formulir valid! Data siap dilanjutkan ke tahap berikutnya.');
+}
