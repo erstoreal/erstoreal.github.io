@@ -108,17 +108,29 @@ function closeModal() {
 /* JAVASCRIPT: DROPDOWN & CHECKOUT FORM      */
 /* ========================================== */
 
-// 1. Fungsi untuk Membuka/Menutup Dropdown Metode Pembayaran
+// 1. Fungsi untuk Membuka/Menutup Dropdown Metode Pembayaran & Animasi Panah
 function togglePaymentDropdown() {
     const optionsList = document.getElementById('paymentOptionsList');
+    const arrowIcon = document.querySelector('.dropdown-arrow');
     
-    // Cek apakah list sedang terbuka atau tertutup
     if (optionsList.style.display === 'block') {
-        optionsList.style.display = 'none';
+        // Tutup dropdown dan kembalikan panah menghadap ke bawah
+        optionsList.style.opacity = '0';
+        optionsList.style.transform = 'translateY(-10px)';
+        if (arrowIcon) arrowIcon.style.transform = 'rotate(0deg)';
+        
+        setTimeout(() => {
+            optionsList.style.display = 'none';
+        }, 300);
     } else {
         optionsList.style.display = 'block';
+        // Buka dropdown dan putar panah menghadap ke atas
+        setTimeout(() => {
+            optionsList.style.opacity = '1';
+            optionsList.style.transform = 'translateY(0)';
+            if (arrowIcon) arrowIcon.style.transform = 'rotate(180deg)';
+        }, 10);
         
-        // Geser layar secara halus (smooth scroll) ke area pembayaran
         document.getElementById('paymentSection').scrollIntoView({ 
             behavior: 'smooth', 
             block: 'nearest' 
