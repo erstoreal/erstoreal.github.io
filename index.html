@@ -351,7 +351,7 @@
    <div class="product-grid" style="display: flex; flex-direction: column; gap: 12px; margin-top: 12px; margin-bottom: 24px;">
 
         <!-- CARD PRODUK 1 -->
-        <div class="product-card" onclick="selectCard(this)" style="padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+        <div class="product-card" onclick="selectCard(this); document.getElementById('formCheckoutCard').scrollIntoView({ behavior: 'smooth', block: 'start' });" style="padding: 12px; display: flex; flex-direction: column; gap: 8px;">
             <div style="width: 100%; border-radius: 8px; overflow: hidden; background-color: #161b22;">
                 <img src="https://picsum.photos/id/10/600/350" alt="Akun MLBB" style="width: 100%; height: auto; display: block;">
             </div>
@@ -371,7 +371,7 @@
         </div>
 
         <!-- CARD PRODUK 2 -->
-        <div class="product-card" onclick="selectCard(this)" style="padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+        <div class="product-card" onclick="selectCard(this); document.getElementById('formCheckoutCard').scrollIntoView({ behavior: 'smooth', block: 'start' });" style="padding: 12px; display: flex; flex-direction: column; gap: 8px;">
             <div style="width: 100%; border-radius: 8px; overflow: hidden; background-color: #161b22;">
                 <img src="https://picsum.photos/id/20/600/350" alt="Akun MLBB" style="width: 100%; height: auto; display: block;">
             </div>
