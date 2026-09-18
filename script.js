@@ -79,7 +79,7 @@ function openProductModal(productId) {
     // Memilih deskripsi berdasarkan produk
     if (productId === 1) {
         namaProduk = "Advance Server Lev 3 | 1s";
-        deskripsiProduk = "Login via Moonton, untuk change email / cara ganti email bisa kalian akses lewat web <b>mail.tm/en/</b>. ( Support android only )";
+        deskripsiProduk = "Login via Moonton, untuk change email / cara ganti email bisa kalian akses lewat web <b>mail.tm</b>. ( Support android only )";
     } else if (productId === 2) {
         namaProduk = "Advance Server Lev 3 | 5s";
         deskripsiProduk = "Kalian akan dapat 1 akun dengan isi 5 server di dalamnya. Login via Moonton, untuk change email / cara ganti email bisa kalian akses lewat web <b>mail.tm</b>. ( Support android only )";
