@@ -427,6 +427,8 @@
 .dropdown-arrow {
     color: #8b949e;
     font-size: 11px;
+    display: inline-block;
+    transition: transform 0.3s ease;
 }
 
 .payment-options-list {
@@ -436,6 +438,9 @@
     border: 1px solid #30363d;
     border-radius: 8px;
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .payment-option-item {
