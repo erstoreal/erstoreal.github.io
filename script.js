@@ -90,7 +90,7 @@ function openProductModal(productId) {
         <div style="margin-bottom: 12px;">
             <strong style="color: #f3f4f6; display: block; font-size: 15px; margin-bottom: 4px;">${namaProduk}</strong>
         </div>
-        <p style="color: #c9d1d9; font-size: 13px; line-height: 1.6; margin: 0;">${deskripsiProduk}</p>
+        <p style="color: #8b949e; font-size: 13px; line-height: 1.6; margin: 0;">${deskripsiProduk}</p>
     `;
 
     modal.style.display = 'flex';
