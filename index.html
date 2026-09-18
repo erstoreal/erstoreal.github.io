@@ -289,6 +289,216 @@
     animation: modalPop 0.25s ease;
 }
 
+/* ========================================== */
+/* STYLING CSS FORM PEMBAYARAN - TUMBASAKUN   */
+/* ========================================== */
+
+.checkout-card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-family: sans-serif;
+}
+
+.checkout-title {
+    color: #f3f4f6;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 16px 0;
+}
+
+/* Kotak Ringkasan Produk Terpilih */
+.summary-box {
+    display: none;
+    margin-bottom: 16px;
+    background-color: #1f242d;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.summary-label {
+    color: #8b949e;
+    font-size: 12px;
+}
+
+.close-summary-btn {
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.summary-content {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.summary-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.summary-name {
+    color: #f3f4f6;
+    font-size: 13.5px;
+    margin: 0 0 4px 0;
+}
+
+.summary-price {
+    color: #E94014;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Grup Form & Input */
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-label {
+    display: block;
+    color: #f3f4f6;
+    font-size: 13.5px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    color: #f3f4f6;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    border-color: #E94014;
+}
+
+.form-hint {
+    display: block;
+    color: #8b949e;
+    font-size: 11.5px;
+    margin-top: 4px;
+}
+
+/* Dropdown Pembayaran Custom */
+.payment-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.payment-dropdown-toggle {
+    width: 100%;
+    padding: 12px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    color: #f3f4f6;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.dropdown-arrow {
+    color: #8b949e;
+    font-size: 11px;
+}
+
+.payment-options-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    z-index: 99;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.payment-option-item {
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #30363d;
+    color: #f3f4f6;
+    font-size: 13.5px;
+    cursor: pointer;
+}
+
+.payment-option-item:last-child {
+    border-bottom: none;
+}
+
+.payment-option-item:hover {
+    background-color: #1f242d;
+}
+
+/* Radio Button Kustom */
+.radio-circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #8b949e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+/* Tombol Pesan */
+.checkout-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #E94014;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.checkout-btn:hover {
+    background-color: #d03811;
+}
+      
     </style>
 </head>
 <body>
@@ -389,9 +599,70 @@
             </div>
         </div>
 
+   </div>
+ </div>
+
+<!-- ========================================== -->
+<!-- KODE HTML FORM PEMBAYARAN LENGKAP & BERSIH -->
+<!-- ========================================== -->
+<div class="checkout-card" id="formCheckoutCard">
+    <h3 class="checkout-title">Formulir Pemesanan</h3>
+
+    <!-- Ringkasan Produk Terpilih (Sembunyikan Default) -->
+    <div class="summary-box" id="selectedProductCardContainer">
+        <div class="summary-header">
+            <span class="summary-label">Produk Terpilih:</span>
+            <button class="close-summary-btn" onclick="removeSelectedProduct()">&times;</button>
+        </div>
+        <div class="summary-content">
+            <img id="summaryProductImg" src="" alt="Produk" class="summary-img">
+            <div>
+                <h4 id="summaryProductName" class="summary-name"></h4>
+                <p id="summaryProductPrice" class="summary-price"></p>
+            </div>
+        </div>
     </div>
-  </div>
-     
+
+    <!-- Input Nomor WhatsApp -->
+    <div class="form-group">
+        <label class="form-label">No. WhatsApp</label>
+        <input type="number" id="buyerWhatsapp" class="form-input" placeholder="Contoh: 08123456789">
+        <span class="form-hint">ℹ️ Nomor ini dihubungi jika ada kendala transaksi.</span>
+    </div>
+
+    <!-- Dropdown Metode Pembayaran -->
+    <div class="form-group payment-wrapper" id="paymentSection">
+        <label class="form-label">Metode Pembayaran</label>
+        <div class="payment-dropdown-toggle" onclick="togglePaymentDropdown()">
+            <span id="selectedPaymentText">Pilih Metode Pembayaran</span>
+            <span class="dropdown-arrow">▼</span>
+        </div>
+
+        <!-- Daftar Pilihan Pembayaran (QRIS, DANA, OVO, GoPay) -->
+        <div class="payment-options-list" id="paymentOptionsList">
+            <div class="payment-option-item" onclick="selectPayment('QRIS (All Payment)', this)">
+                <span>QRIS (All Payment)</span>
+                <div class="radio-circle"></div>
+            </div>
+            <div class="payment-option-item" onclick="selectPayment('DANA', this)">
+                <span>DANA</span>
+                <div class="radio-circle"></div>
+            </div>
+            <div class="payment-option-item" onclick="selectPayment('OVO', this)">
+                <span>OVO</span>
+                <div class="radio-circle"></div>
+            </div>
+            <div class="payment-option-item" onclick="selectPayment('GoPay', this)">
+                <span>GoPay</span>
+                <div class="radio-circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Aksi Pesan -->
+    <button class="checkout-btn" onclick="processCheckout()">PESAN SEKARANG</button>
+</div>
+        
         <div id="guide-content" class="tab-pane">
             <!-- Konten Panduan Order nanti di sini -->
         </div>
