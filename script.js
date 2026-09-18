@@ -68,3 +68,30 @@ function switchBottomNav(element, menuName) {
         element.classList.add('selected');
     }
 
+// Fungsi khusus untuk membuka pop-up modal detail produk
+function openProductModal() {
+    const modal = document.getElementById('productModal');
+    const modalBody = document.getElementById('modalBodyContent');
+    
+    // Isi konten modal
+    modalBody.innerHTML = `
+        <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+            <div>
+                <strong style="color: #f3f4f6; display: block; font-size: 15px; margin-bottom: 4px;">Advance Server Lev 3 | 1s</strong>
+                <span style="color: #E94014; font-weight: bold; font-size: 14px;">Rp 2.000</span>
+            </div>
+        </div>
+        <p style="color: #8b949e; font-size: 13px; margin: 0;">Produk siap diproses. Silakan tekan tombol tutup di bawah untuk kembali.</p>
+    `;
+
+    // Tampilkan modal dan kunci layar belakang
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// Fungsi untuk menutup pop-up modal dan membuka kunci layar
+function closeModal() {
+    const modal = document.getElementById('productModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
