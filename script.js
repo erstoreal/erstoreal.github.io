@@ -144,3 +144,36 @@ function selectPayment(methodName, element) {
     // Tutup dropdown secara otomatis setelah dipilih
     togglePaymentDropdown();
 }
+// Fungsi Otomatis untuk Mengisi Ringkasan Produk dari Katalog
+function updateCheckoutSummary(productName, productServer, productPrice, productImage) {
+    const nameEl = document.getElementById('summaryProductName');
+    const serverEl = document.getElementById('summaryProductServer');
+    const priceEl = document.getElementById('summaryProductPrice');
+    const imgEl = document.getElementById('summaryProductImg');
+
+    if (nameEl) nameEl.innerText = productName;
+    if (serverEl) serverEl.innerText = "Server: " + productServer;
+    if (priceEl) priceEl.innerText = productPrice;
+    if (imgEl && productImage) imgEl.src = productImage;
+}
+
+// Fungsi saat Tombol "PESAN SEKARANG" diklik
+function processCheckout() {
+    const whatsapp = document.getElementById('buyerWhatsapp').value;
+    const promo = document.getElementById('promoCode').value;
+    const paymentMethod = document.getElementById('selectedPaymentText').innerText;
+
+    // Validasi sederhana
+    if (!whatsapp) {
+        alert("Mohon masukkan nomor WhatsApp terlebih dahulu!");
+        return;
+    }
+    if (paymentMethod === "Pilih Metode Pembayaran") {
+        alert("Mohon pilih metode pembayaran terlebih dahulu!");
+        return;
+    }
+
+    // Lanjut proses pesanan
+    alert("Pesanan berhasil diproses! Menghubungkan ke pembayaran...");
+}
+
