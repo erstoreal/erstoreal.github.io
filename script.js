@@ -103,3 +103,44 @@ function closeModal() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
+
+// Fungsi untuk membuka dan menutup dropdown metode pembayaran
+function togglePaymentDropdown() {
+    const list = document.getElementById('paymentOptionsList');
+    if (list.style.display === 'none' || list.style.display === '') {
+        list.style.display = 'block';
+        setTimeout(() => {
+            list.style.opacity = '1';
+            list.style.transform = 'translateY(0)';
+        }, 10);
+    } else {
+        list.style.opacity = '0';
+        list.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+            list.style.display = 'none';
+        }, 250);
+    }
+}
+
+// Fungsi ketika salah satu metode pembayaran dipilih
+function selectPayment(methodName, element) {
+    document.getElementById('selectedPaymentText').innerText = methodName;
+    document.getElementById('selectedPaymentText').style.color = '#f3f4f6';
+
+    // Reset semua ikon lingkaran kembali abu-abu
+    const allCircles = document.querySelectorAll('.radio-circle');
+    allCircles.forEach(circle => {
+        circle.style.borderColor = '#8b949e';
+        circle.style.backgroundColor = 'transparent';
+        circle.innerHTML = '';
+    });
+
+    // Ubah ikon lingkaran pada pilihan yang diklik menjadi warna oranye khas TUMBASAKUN (#E94014)
+    const activeCircle = element.querySelector('.radio-circle');
+    activeCircle.style.borderColor = '#E94014';
+    activeCircle.style.backgroundColor = '#E94014';
+    activeCircle.innerHTML = '<div style="width: 6px; height: 6px; background-color: #ffffff; border-radius: 50%;"></div>';
+
+    // Tutup dropdown secara otomatis setelah dipilih
+    togglePaymentDropdown();
+}
